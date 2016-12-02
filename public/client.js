@@ -38,8 +38,9 @@ app.controller("SampleCtrl", function($firebaseAuth, $http) {
 
   });
 
-  self.addUser = function(){
+  self.addUser = function(newUser){
     console.log("click works");
+    self.newUser = newUser;
     if(firebaseUser) {
       // This is where we make our call to our server
       firebaseUser.getToken().then(function(idToken){
