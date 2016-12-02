@@ -6,6 +6,7 @@ var Secret = require('../models/secret');
 router.get("/", function(req, res){
   var userEmail = req.decodedToken.email;
   // Check the user's level of permision based on their email
+  console.log(userEmail);
   User.findOne({ email: userEmail }, function (err, user) {
     if (err) {
       console.log('Error COMPLETING clearanceLevel query task', err);

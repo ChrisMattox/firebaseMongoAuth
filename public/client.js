@@ -38,6 +38,28 @@ app.controller("SampleCtrl", function($firebaseAuth, $http) {
 
   });
 
+  self.addUser = function(){
+    console.log("click works");
+    if(firebaseUser) {
+      // This is where we make our call to our server
+      firebaseUser.getToken().then(function(idToken){
+        $http({
+          method: 'POST',
+          url: '/privateData',
+          headers: {
+            id_token: idToken
+          }
+        }).then(function(response){
+          self.secretData = response.data;
+        });
+      });
+    } else {
+      console.log('Not logged in or not authorized.');
+      self.secretData = [];
+    }
+
+  }
+
   // This code runs when the user logs out
   self.logOut = function(){
     auth.$signOut().then(function(){

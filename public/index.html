@@ -23,16 +23,22 @@
     <button ng-click="sc.logIn()">Log In</button>
     <button ng-click="sc.logOut()">Log Out</button>
     <div ng-if="sc.secretData.length === 0">Log in to get some secret data.</div>
-    <table ng-if="sc.secretData.length > 0">
+
+
+    <form ng-if="sc.secretData.length > 0" >
+      <label for="email">Email: </label>
+      <input type="text" id="email" placeholder="E-mail Address"/>
+      <select name="clearanceLevel">
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+        <option value="4">4</option>
+        <option value="5">5</option>
+      </select>
+      <button ng-click="sc.addUser()">Add User</button>
+    </form>
+    <table>
       <thead>
-        <tr>
-          <th>
-            Secrecy Level
-          </th>
-          <th>
-            Secret Message
-          </th>
-        </tr>
       </thead>
       <tbody>
         <tr ng-repeat="secret in sc.secretData">
