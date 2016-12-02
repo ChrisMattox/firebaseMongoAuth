@@ -46,19 +46,15 @@ app.controller("SampleCtrl", function($firebaseAuth, $http) {
       firebaseUser.getToken().then(function(idToken){
         $http({
           method: 'POST',
-          url: '/privateData',
+          url: '/privateData', self.newUser,
           headers: {
             id_token: idToken
           }
         }).then(function(response){
-          self.secretData = response.data;
+          self.newUser = {};
         });
       });
-    } else {
-      console.log('Not logged in or not authorized.');
-      self.secretData = [];
     }
-
   }
 
   // This code runs when the user logs out
